@@ -1,0 +1,2 @@
+what will the impact of refactoring code so urlItems is a dependency in useEffect be?
+can it be done?

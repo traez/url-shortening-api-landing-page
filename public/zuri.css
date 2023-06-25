@@ -124,7 +124,7 @@ main {
   flex-flow: column;
   justify-content: space-around;
   align-items: center;
-  background-image: url("/images/bg-shorten-mobile.svg");
+  background-image: url("./images/bg-shorten-mobile.svg");
   background-repeat: no-repeat;
   background-position: left 99% top 95%;
   padding: 0.5rem;
@@ -163,7 +163,6 @@ main {
 }
 .mob-sec-butshrt:hover {
   cursor: pointer;
-  background-color: hsl(180, 66%, 39%);
 }
 .mob-sec-outputdiv {
   width: 80%;
@@ -177,7 +176,7 @@ main {
   background-color: white;
 }
 .mob-sec-b {
-  font-size: 0.8rem;
+  font-size: 1rem;
   width: 14rem;
   overflow: hidden;
 }
@@ -186,7 +185,6 @@ main {
 }
 .mob-sec-str {
   width: 14rem;
-  font-size: 0.8rem;
 }
 .mob-sec-butcop {
   width: 14rem;
@@ -198,7 +196,6 @@ main {
 }
 .mob-sec-butcop:hover {
   cursor: pointer;
-  background-color: hsl(180, 66%, 39%);
 }
 /* Article Mobile************************/
 .mob-art {
@@ -302,7 +299,7 @@ main {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  background-image: url("/images/bg-boost-mobile.svg");
+  background-image: url("./images/bg-boost-mobile.svg");
   background-repeat: no-repeat;
   background-color: var(--dark-violet);
   color: white;
@@ -352,9 +349,6 @@ main {
   font-size: 0.7rem;
   color: var(--gray);
 }
-.mob-men-s:hover {
-  cursor: pointer;
-}
 .mob-men-pics {
   display: flex;
   flex-flow: row;
@@ -363,9 +357,6 @@ main {
 }
 .mob-men-sm {
   width: 3rem;
-}
-.mob-men-sm:hover {
-  cursor: pointer;
 }
 /* Footer Mobile************************/
 .mob-foo {
@@ -397,7 +388,6 @@ dialog {
   background-color: var(--dark-violet);
   color: white;
   border-radius: 0.5rem;
-  z-index: 9999;
 }
 dialog[open] {
   display: flex;
@@ -420,19 +410,6 @@ dialog hr {
   width: 12rem;
   height: 0.1rem;
   background-color: white;
-}
-/* Next.js Classes ************************/
-.errorText {
-  color: red;
-  text-shadow: 4px 4px 8px black;
-  font-style: normal;
-}
-.errorBorder {
-  border: 2px solid red;
-}
-.copied {
-  background-color: var(--dark-violet);
-  color: white;
 }
 /* Media Queries ************************/
 @media (min-width: 500px) {
@@ -570,14 +547,13 @@ dialog hr {
     gap: 0.5rem;
     padding: 0.5rem 0;
     background-color: hsl(0, 0%, 95%);
-    width:100%;
   }
   .desk-sec-inputdiv {
     display: flex;
     flex-flow: row;
     justify-content: space-around;
     align-items: center;
-    background-image: url("/images/bg-shorten-desktop.svg");
+    background-image: url("./images/bg-shorten-desktop.svg");
     background-repeat: no-repeat;
     background-position: left 99% top 95%;
     padding: 0.5rem;
@@ -585,7 +561,6 @@ dialog hr {
     background-color: var(--dark-violet);
     width: 80%;
     height: 8rem;
-    gap:0.5rem;
   }
   .desk-sec-inputbox {
     display: flex;
@@ -596,7 +571,7 @@ dialog hr {
   }
   .desk-sec-input {
     height: 3rem;
-    width: 100%;
+    width: 25rem;
     border-radius: 0.3rem;
     padding-left: 0.2rem;
     font-size: 1rem;
@@ -608,7 +583,7 @@ dialog hr {
   }
   .desk-sec-butshrt {
     height: 3rem;
-    width: 40%;
+    width: 15rem;
     border-radius: 0.3rem;
     background-color: var(--cyan);
     color: white;
@@ -619,7 +594,6 @@ dialog hr {
   }
   .desk-sec-butshrt:hover {
     cursor: pointer;
-    background-color: hsl(180, 66%, 39%);
   }
   .desk-sec-outputdiv {
     width: 80%;
@@ -635,13 +609,12 @@ dialog hr {
     padding: 0 0.5rem;
   }
   .desk-sec-b {
-    font-size: 0.8rem;
+    font-size: 1rem;
     width: 70%;
     height: 2rem;
     overflow: hidden;
   }
   .desk-sec-str {
-    font-size: 0.8rem;
     width: 20%;
     height: 2rem;
     text-align: right;
@@ -657,7 +630,6 @@ dialog hr {
   }
   .desk-sec-butcop:hover {
     cursor: pointer;
-    background-color: hsl(180, 66%, 39%);
   }
   /* Article Desktop************************/
   .desk-art {
@@ -768,7 +740,7 @@ dialog hr {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    background-image: url("/images/bg-boost-desktop.svg");
+    background-image: url("./images/bg-boost-desktop.svg");
     background-repeat: no-repeat;
     background-color: var(--dark-violet);
     color: white;
@@ -819,9 +791,6 @@ dialog hr {
     font-size: 0.7rem;
     color: var(--gray);
   }
-  .desk-men-s:hover {
-    cursor: pointer;
-  }
   .desk-men-pics {
     display: flex;
     flex-flow: row;
@@ -831,17 +800,14 @@ dialog hr {
   .desk-men-sm {
     width: 3rem;
   }
-  .desk-men-sm:hover {
-    cursor: pointer;
-  }
   /* Footer Desktop************************/
-  .desk-foo {
+ .desk-foo {
     grid-area: seven;
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    gap:0.5rem;
     background-color: hsl(180, 66%, 69%);
   }
   .desk-foo6 {
@@ -850,12 +816,8 @@ dialog hr {
   .desk-fooa {
     color: hsl(240, 100%, 30%);
   }
-  .desk-fooa:hover {
+ .desk-fooa:hover {
     color: hsl(240, 100%, 50%);
-  }
-  .copiedd {
-    background-color: var(--dark-violet);
-    color: white;
   }
 }
 @media (min-width: 1000px) {

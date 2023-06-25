@@ -1,95 +1,103 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import { useState } from "react";
 
+/* Importing mobile and desktop components */
+import Mnav from "./components-mobile/Mnav";
+import Dnav from "./components-desktop/Dnav";
+import Mheader from "./components-mobile/Mheader";
+import Dheader from "./components-desktop/Dheader";
+import Msection from "./components-mobile/Msection";
+import Dsection from "./components-desktop/Dsection";
+import Marticle from "./components-mobile/Marticle";
+import Darticle from "./components-desktop/Darticle";
+import Maside from "./components-mobile/Maside";
+import Daside from "./components-desktop/Daside";
+import Mmenu from "./components-mobile/Mmenu";
+import Dmenu from "./components-desktop/Dmenu";
+import Mfooter from "./components-mobile/Mfooter";
+import Dfooter from "./components-desktop/Dfooter";
+
+/* Importing custom libraries */
+import useMediaQuery from "./libraries/useMediaQuery";
+import fetchShortUrl from "./libraries/fetchShortUrl";
+import storeShortUrl from "./libraries/storeShortUrl";
+
+/* State declarations */
 export default function Home() {
+  const isMobile = useMediaQuery("(max-width: 799px)");
+  const [isOpen, setIsOpen] = useState(false);
+  const [url, setUrl] = useState("");
+  const [inputError, setInputError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [copiedButton, setCopiedButton] = useState(null);
+
+  /* Determine which component to render based on the screen size */
+  const Nav = isMobile ? Mnav : Dnav;
+  const Header = isMobile ? Mheader : Dheader;
+  const Section = isMobile ? Msection : Dsection;
+  const Article = isMobile ? Marticle : Darticle;
+  const Aside = isMobile ? Maside : Daside;
+  const Menu = isMobile ? Mmenu : Dmenu;
+  const Footer = isMobile ? Mfooter : Dfooter;
+
+    /* Toggle the dialog open/close state */
+  function toggleDialog() {
+    setIsOpen((prevOpen) => !prevOpen);
+  }
+
+      /* Update the URL input value */
+  function handleChange(event) {
+    const { value } = event.target;
+    setUrl(value);
+  }
+
+  /* 
+  Set an error message if the URL input is empty 
+  Remove the error classes after 4 seconds
+  Fetch short URL data
+  Store the short URL data
+  Clear the URL input value
+  */
+  async function handleClick() {
+    if (!url) {
+      setInputError(true);
+      setErrorMessage("Please add a link");
+
+      setTimeout(() => {
+        setInputError(false);
+        setErrorMessage("");
+      }, 4000);
+
+      return;
+    }
+
+    try {
+      const data = await fetchShortUrl(url);
+      storeShortUrl(data);
+      setUrl("");
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+
+  /* Render components and pass on props */
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    <main>
+      <Nav isOpen={isOpen} onToggleDialog={toggleDialog} />
+      <Header />
+      <Section
+        onHandleChange={handleChange}
+        url={url}
+        onHandleClick={handleClick}
+        inputError={inputError}
+        errorMessage={errorMessage}
+        copiedButton={copiedButton}
+        setCopiedButton={setCopiedButton}
+      />
+      <Article />
+      <Aside />
+      <Menu />
+      <Footer />
     </main>
-  )
+  );
 }
