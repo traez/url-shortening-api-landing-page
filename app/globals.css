@@ -198,7 +198,6 @@ main {
 }
 .mob-sec-butcop:hover {
   cursor: pointer;
-  background-color: hsl(180, 66%, 39%);
 }
 /* Article Mobile************************/
 .mob-art {
@@ -657,7 +656,6 @@ dialog hr {
   }
   .desk-sec-butcop:hover {
     cursor: pointer;
-    background-color: hsl(180, 66%, 39%);
   }
   /* Article Desktop************************/
   .desk-art {
